@@ -59,8 +59,8 @@
 
 ## 鸣谢
 
-本模板参考并改写自 [zhanwen/MathModel](https://github.com/zhanwen/MathModel)和li chun
-/springli07（https://github.com/springli07/GMCM_LaTeX_overleaf）。在此感谢其开源贡献。
+本模板参考并改写自 [zhanwen/MathModel](https://github.com/zhanwen/MathModel)和[li chun
+/springli07](https://github.com/springli07/GMCM_LaTeX_overleaf)。在此感谢其开源贡献。
 
 ---
 
