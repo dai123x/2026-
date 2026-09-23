@@ -27,8 +27,7 @@
 %% Executing of Options
 \ExecuteOptions{colorprint}
 \ProcessOptions\relax
-%% Loading Class
-\LoadClass[a4paper,cs4size]{ctexart}
+\LoadClass[a4paper,zihao=-4]{ctexart}
 %% Loading Package
 \RequirePackage{ifxetex}
 \RequireXeTeX
@@ -131,7 +130,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \RequirePackage{hyperref}
 %% Document Layout
 % 页面布局
-\geometry{top=30.0mm,bottom=25.0mm,left=31.7mm,right=31.7mm,headsep=8mm}
+\geometry{a4paper,top=30.0mm,bottom=20.0mm,left=22.5mm,right=22.5mm,headsep=8mm,footskip=12mm}
 \renewcommand*{\baselinestretch}{1}
 % 修改tabular 环境, 设置表格中的行间距为正文行间距.
 \let\gmcm@oldtabular\tabular
@@ -149,17 +148,18 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \setsansfont{Arial}
 \setCJKmainfont[AutoFakeBold = {2.15},ItalicFont={KaiTi.ttf}]{SimSun.ttf}
 \setCJKfamilyfont{xw}{STXinwei.ttf}
+\setCJKfamilyfont{zhli}{LiSu.ttf}
+\def\lishu{\CJKfamily{zhli}}
+\def\xinwei{\CJKfamily{xw}}
 
-%
-%\setCJKfamilyfont{zhyou}{YouYuan}
-\ifx\lishu\undefined%
- \setCJKfamilyfont{zhli}{LiSu.ttf}
- \newcommand*{\lishu}{\CJKfamily{zhli}} %% Do this if it is undefined
-\else
-  %% Do this if it is defined
-\fi
-\newcommand*{\xinwei}{\CJKfamily{xw}} 
-%\newcommand*{\lishu}{\CJKfamily{zhli}}
+% 页脚页码样式：居中五号 Times New Roman
+\def\ps@plain{%
+  \let\@mkboth\@gobbletwo
+  \let\@oddhead\@empty
+  \def\@oddfoot{\normalfont\zihao{5}\rmfamily\hfil\thepage\hfil}%
+  \let\@evenhead\@empty
+  \let\@evenfoot\@oddfoot
+}
 
  
 % 数学环境, 定理等设置
@@ -277,55 +277,67 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
   \newpage
   \if@gmcm@preface
   \setcounter{page}{0}
-  \def\thepage{0}
   \thispagestyle{empty}%
   \begin{center}
-  {\includegraphics[width=13.5cm]{logo2026.png}}
+  \vskip -0.15cm
+  {\includegraphics[width=12.8cm]{logo2026.png}\par}
   
-   \vskip1.75cm
-  {\xinwei\zihao{2} \gmcm@ges@string@contents \par}
+  \vskip 1.7cm
+  {\includegraphics[width=12.2cm]{title2026.pdf}\par}
   \end{center}
   
-  \vskip2cm
+  \vskip 1.8cm
   
-  % \thispagestyle{gmcmheadings} 
-    \renewcommand\arraystretch{1.58}
-  \noindent \begin{tabularx}{\textwidth}{lX}
-   \zihao{-2}\bfseries 学\qquad 校&\zihao{-2}\bfseries\gmcm@tokens@schoolname\\
-   \toprule[1.38pt]\\[-15pt]
-   \zihao{-2}\bfseries 参赛队号&\zihao{-2}\bfseries\gmcm@tokens@baominghao\\
-   \toprule[1.38pt]\\[-15pt]
-    \multirow{3}{*}{\zihao{-2}\bfseries 队员姓名}&\zihao{-2}\bfseries   1. \gmcm@tokens@membera\hfill\null\\
-    \cline{2-2}\\[-15pt]
-                                &\zihao{-2}\bfseries 2. \gmcm@tokens@memberb\hfill\null\\
-    \cline{2-2}\\[-15pt]
-                         &\zihao{-2}\bfseries 3.  \gmcm@tokens@memberc\hfill\null\\
-    \bottomrule[1.38pt]
-   \end{tabularx}
-   \fi
-   \makenametitle
-   }
-
-\def\makenametitle{
-\newpage
-\setcounter{page}{1}
-\vspace*{2.3cm}
-\begin{center}
-%{\includegraphics[width=4cm]{logo}}
-
-\vskip.5\baselineskip%
-{\xinwei\zihao{2} \gmcm@ges@string@contents \par}
-\end{center}
-
-\vskip1.6cm%
-
-\begin{center}\begin{tabularx}{.95\textwidth}{@{}lX@{}}
-{\zihao{4} 题\qquad 目} &\hfill\zihao{3}\heiti \@title\hfill\null\\
-\cline{2-2}
-\end{tabularx}
-\end{center}
+  \begin{center}
+  \setlength{\arrayrulewidth}{1.0pt}
+  \begin{tabular}{@{}p{3.25cm}p{11.5cm}@{}}
+   \zihao{-2}\songti\bfseries\makebox[4\ccwd][s]{学\ 校} & \zihao{-2}\songti\bfseries \gmcm@tokens@schoolname\rule[-12pt]{0pt}{32pt} \\
+   \specialrule{1.5pt}{0pt}{4pt}
+   \zihao{-2}\songti\bfseries 参赛队号 & \zihao{-2}\songti\bfseries \gmcm@tokens@baominghao\rule[-22pt]{0pt}{56pt} \\
+   \specialrule{1.5pt}{0pt}{4pt}
+   \multirow{3}{=}{\vspace{1.0em}\zihao{-2}\songti\bfseries 队员姓名} & \zihao{-2}\songti\bfseries 1. \gmcm@tokens@membera\rule[-7pt]{0pt}{25pt} \\
+   \cline{2-2}
+    & \zihao{-2}\songti\bfseries 2. \gmcm@tokens@memberb\rule[-7pt]{0pt}{25pt} \\
+   \cline{2-2}
+    & \zihao{-2}\songti\bfseries 3. \gmcm@tokens@memberc\rule[-7pt]{0pt}{25pt} \\
+   \specialrule{1.5pt}{0pt}{0pt}
+  \end{tabular}
+  \end{center}
+  
+  \vfill
+  \fi
+  \makenametitle
 }
 
+\def\gmcm@print@title{%
+  \ifx\@title\@empty
+    \underline{\hspace{11.5cm}}%
+  \else
+    \settowidth{\@tempdima}{\zihao{3}\heiti \@title}%
+    \ifdim\@tempdima<11.5cm
+      \underline{\makebox[11.5cm][c]{\zihao{3}\heiti \@title}}%
+    \else
+      \underline{\zihao{3}\heiti \@title}%
+    \fi
+  \fi
+}
+
+\def\makenametitle{%
+  \newpage
+  \setcounter{page}{1}
+  \thispagestyle{plain}%
+  \begin{center}
+  \vskip 0.1cm
+  {\includegraphics[width=12.2cm]{title2026.pdf}\par}
+  \end{center}
+  
+  \vskip 0.85cm
+  
+  \noindent
+  {\zihao{-2}\lishu 题\ 目：}\quad \gmcm@print@title
+  
+  \vskip 0.85cm
+}
 
 % 中文标题格式设置
 % 目录深度
@@ -333,8 +345,8 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \def\@seccntformat#1{\csname the#1\endcsname\ \ }
 % 节标题格式, 居中, 使用\chinese命令修改计数器, \kern 使得数字和内容不至于太远
 \renewcommand\thesection{\arabic{section}.}
-\renewcommand\thesubsection{\arabic{section}\thinspace.\thinspace\arabic{subsection}}
-\renewcommand\thesubsubsection{\thesubsection\thinspace.\thinspace\arabic{subsubsection}}
+\renewcommand\thesubsection{\arabic{section}.\arabic{subsection}}
+\renewcommand\thesubsubsection{\thesubsection.\arabic{subsubsection}}
 \renewcommand\section{\@startsection{section}{1}{\z@}%
   {2.5ex \@plus -1ex \@minus -.2ex}%
   {2.3ex \@plus.2ex}%
@@ -358,33 +370,26 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Define new environment and command
-%% 摘要两个字设置为 4 号.
-%% 定义摘要环境
+%% 摘要小二号隶书居中
 \renewenvironment{abstract}{%
-\if@twocolumn
-    \section*{\abstractname}%
-  \else
-   \begin{center}%
-  {\zihao{3}\lishu{摘 \qquad \quad 要:}\vspace{\z@}}%
-   \end{center}%
-   \quotation
-  \fi}
-  {\if@twocolumn\else\endquotation\newpage\null\fi}
-\renewenvironment{quotation}
-  {\list{}{\listparindent 2em%
-   \itemindent \listparindent
-   \rightmargin\z@
-   \leftmargin\z@
-   \parsep \z@ \@plus\p@}%
-  \item\relax}
-  {\endlist}
+  \begin{center}%
+  {\zihao{-2}\lishu \gmcm@cap@abstractname\par}%
+  \end{center}%
+  \vskip 0.35cm
+  \begingroup
+  \songti\zihao{-4}%
+}{%
+  \par
+  \endgroup
+  \newpage
+}
 
 \newcommand\keywords[1]{%
-  \renewcommand{\gmcm@tokens@keywords}{#1}
+  \renewcommand{\gmcm@tokens@keywords}{#1}%
   \par
-  \vskip1ex
-  {\noindent\zihao{-4}\heiti\gmcm@cap@keywordsname：}~{\gmcm@tokens@keywords}
-  }
+  \vskip 0.8cm
+  {\noindent\zihao{-2}\lishu \gmcm@cap@keywordsname：}\quad {\songti\zihao{-4}\gmcm@tokens@keywords}%
+}
 % 定义附录  
 \renewcommand\appendix{\par
   \setcounter{section}{0}%
@@ -419,10 +424,9 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \newcommand*{\gmcm@cap@example}{例}
 \newcommand*{\gmcm@cap@proof}{证明}
 \newcommand*{\gmcm@cap@solution}{解}
- %%%  中文标题名称
-\newcommand*{\gmcm@cap@abstractname}{摘\qquad要:}
+\newcommand*{\gmcm@cap@abstractname}{摘\ 要：}
  %%%  中文关键字
-\newcommand*{\gmcm@cap@keywordsname}{关键字}
+\newcommand*{\gmcm@cap@keywordsname}{关键词}
 
  %%%常量
 
