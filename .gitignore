@@ -1,0 +1,16 @@
+# LaTeX 编译中间产物
+*.aux
+*.log
+*.out
+*.toc
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.synctex(busy)
+
+# 字体文件（版权原因不入库，编译前自行放置到项目根目录）
+*.ttf
+*.ttc
+*.otf
